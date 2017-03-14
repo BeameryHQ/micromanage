@@ -10,6 +10,63 @@ We currently have a good 50+ git repository. Developing features affect very oft
 
 These helper functions are configured out of the box to work [bash-it](https://github.com/Bash-it/bash-it) plugins framework for bash and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugins framework for zsh.
 
+## Installation
+
+You can install the helpers using the installation script by executing `. install.sh` .. the script will then prompt to select the type of shell you are using, check for the existence of any shell helper and then install the relevant helpers accordingly.
+
+### One-liner installation
+
+You can install this pugin via the command-line with either curl or wget:
+
+#### via `curl`
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/SeedJobs/beamery-micromanage/master/install.sh)"
+```
+
+#### via `wget`
+
+```bash
+sh -c "$(wget https://raw.githubusercontent.com/SeedJobs/beamery-micromanage/master/install.sh -O -)"
+```
+
+The manual installation details for these are:
+
+#### bash-it
+
+bash-it separates plugins, aliases and completion functions into three separate folders. To install the completion you will need to copy `bash-it/beamery.completion.bash` to `$BASH_IT/completion/available` which is usually is in `$HOME/.bash_it/completion/available`.
+
+To Install the plugin, you need to copy both the main plugin in `bash-it/beamery.plugin.bash` and the plugins folder in `bash-it/beamery/` to `$BASH_IT/plugins/available` which is usually is in `$HOME/.bash_it/plugins/available`
+
+Activating now the plugins and completion is done via executing both `bash-it enable completion beamery` and `bash-it enable plugin beamery` in the terminal and then reloading the sherll either by `reload` which is a bash-it alias or by sourcing `.bash_profile` or `.bashrc` depending on your OSX by executing `source $HOME/.bash_profile; source $HOME/.bashrc`
+
+#### oh-my-zsh
+
+oh-my-zsh have all their plugin in the plugins folder inside the installation directory of `oh-my-zsh` which is usually in `$HOMR/.oh-my-zsh/plugins`.
+
+Installing oh-my-zsh beamery plugin is done by copying beamery folder in `zsh/beamery/` to oh-my-zsh plugins directory and then activating the plugin by editing your `$HOME/.zshrc` and adding `beamery` to the list of plugins so that you have something similar to:
+
+```bash
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+
+plugins=(brew git npm nvm node osx pyenv python scala sublime tmux beamery)
+```
+
+#### Manual
+
+If you do not use any shell halpers but still want to take advantage of these helper functions, you can still install them manually. Basically all what you need to do is source the main entry file which is in `manual/beamery.sh` from your `.bash_profile` or `.bashrc` depending on your OSX. Basically, i create a new folder in my `$HOME` and i call it `.beamery` so thats its hidden, and i copy the contents of `manual` inside so that i have:
+
+```
+├── .beamery
+    ├── beamery.sh
+    ├── plugins
+    └── pluginsInterface.sh
+```
+then i add the line `source $HOME/.beamery/beamery.sh` inside my `$HOME/.bash_profile` as i am on OSX but can be inside your `.bashrc` as well. Simply, reload by re-sourcing these files and you are good to go.
+
 ## What does it do ?
 
 Currently the helper functions configured are:
@@ -48,47 +105,6 @@ Autocompletion is enabled by default and supports both zsh and bash. For zsh, hi
 There is a dedicated `help` function that will be triggered by `beamery help PLUGIN_NAME` that will show the help docs for each plugin.
 
 > help can be also triggered by appending the `--help` flag after each call
-
-## Installation
-
-You can install the helpers using the installation script by executing `. install.sh` .. the script will then prompt to select the type of shell you are using, check for the existence of any shell helper and then install the relevant helpers accordingly.
-
-The manual installation details for these are:
-
-#### bash-it
-
-bash-it separates plugins, aliases and completion functions into three separate folders. To install the completion you will need to copy `bash-it/beamery.completion.bash` to `$BASH_IT/completion/available` which is usually is in `$HOME/.bash_it/completion/available`.
-
-To Install the plugin, you need to copy both the main plugin in `bash-it/beamery.plugin.bash` and the plugins folder in `bash-it/beamery/` to `$BASH_IT/plugins/available` which is usually is in `$HOME/.bash_it/plugins/available`
-
-Activating now the plugins and completion is done via executing both `bash-it enable completion beamery` and `bash-it enable plugin beamery` in the terminal and then reloading the sherll either by `reload` which is a bash-it alias or by sourcing `.bash_profile` or `.bashrc` depending on your OSX by executing `source $HOME/.bash_profile; source $HOME/.bashrc`
-
-#### oh-my-zsh
-
-oh-my-zsh have all their plugin in the plugins folder inside the installation directory of `oh-my-zsh` which is usually in `$HOMR/.oh-my-zsh/plugins`.
-
-Installing oh-my-zsh beamery plugin is done by copying beamery folder in `zsh/beamery/` to oh-my-zsh plugins directory and then activating the plugin by editing your `$HOME/.zshrc` and adding `beamery` to the list of plugins so that you have something similar to:
-
-```bash
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-
-plugins=(brew git npm nvm node osx pyenv python scala sublime tmux beamery)
-```
-
-#### Manual
-
-If you do not use any shell halpers but still want to take advantage of these helper functions, you can still install them manually. Basically all what you need to do is source the main entry file which is in `manual/beamery.sh` from your `.bash_profile` or `.bashrc` depending on your OSX. Basically, i create a new folder in my `$HOME` and i call it `.beamery` so thats its hidden, and i copy the contents of `manual` inside so that i have:
-
-```
-├── .beamery
-    ├── beamery.sh
-    ├── plugins
-    └── pluginsInterface.sh
-```
-then i add the line `source $HOME/.beamery/beamery.sh` inside my `$HOME/.bash_profile` as i am on OSX but can be inside your `.bashrc` as well. Simply, reload by re-sourcing these files and you are good to go.
 
 ### Shell Helpers Architecture
 
