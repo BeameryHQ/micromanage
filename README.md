@@ -1,6 +1,6 @@
 ## Beamery Micromanage - A Micro-services Helpers Framework
 
-At [Beameary](http://beamery.com) we follow [Microservices Architecture](https://en.wikipedia.org/wiki/Microservices) which has various advantages from it being easier to scale, deploy independent services to elimination of any long-term commitment to a technology stack. However, Microservices Architecture also has its fair number of disadvantages as testing and inter-services communication become harder.
+At [Beamery](http://beamery.com) we follow [Microservices Architecture](https://en.wikipedia.org/wiki/Microservices) which has various advantages from it being easier to scale, deploy independent services to elimination of any long-term commitment to a technology stack. However, Microservices Architecture also has its fair number of disadvantages as testing and inter-services communication become harder.
 
 We currently have a good 50+ git repository. Developing features affect very often more than one of these repos. Changing branches, syncing and development is hard as you have to keep flipping between multiple terminal tabs to make sure all the repos are in order. Beamery Micro-services Helpers are shell helper functions that will automate and facilitate manipulating micro-services repos and in general any multiple folders in a certain directory.
 
@@ -152,7 +152,7 @@ The most common prerequisite before executing any "helper" function is to be abl
 
 ### Extending with your own plugins
 
-Adding new plugins is fairly straighforward. You just need to create a new plugin in the `plugins/` folder. The guidelines for creating plugins are:
+Adding new plugins is fairly straightforward. You just need to create a new plugin in the `plugins/` folder. The guidelines for creating plugins are:
 
  - The plugin filename will be the same as the command you wish to be executed
  - Each plugin should source the `pluginInterface` e.g., `source "${HOME}/.beamery/beamery/pluginsInterface.sh"`. You can refer to existing plugins to know the path for the interface depending on your shell implementation
