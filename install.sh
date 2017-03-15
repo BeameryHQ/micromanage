@@ -27,7 +27,7 @@ install_manually() {
         printf "\n%s\n" "source '$HOME/.beamery/beamery/beamery.sh'" >> "${HOME}/.zshrc"
     fi
 
-    printf "Do not forget now to enable the plugin by sourcing your .bash_profile, .bashrc or .zshrc"
+    printf "Do not forget now to enable the plugin by sourcing your .bash_profile, .bashrc or .zshrc\n"
 }
 
 if [[ "$SHELL_TYPE" == "bash-it" ]]; then
