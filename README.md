@@ -159,3 +159,6 @@ Adding new plugins is fairly straightforward. You just need to create a new plug
  - Documentation and help for each plugin will be extracted directly from the comments in the plugin file. **Note**: The first line of the comment should be the plugin name
  - To handle the `-s` flag, you might need to implement special logic if you want to block the execution of that function. For example, check the `update_git_branch` plugin
 
+#### Updates
+
+Since the plugin links itself to bash-it, oh-my-zsh and sits as a git repo, updating it to pull any new plugins or changes is as easy as executing `beamery update` or simply going to your installation folder and pulling the latest from remote.
