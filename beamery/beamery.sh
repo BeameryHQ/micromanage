@@ -12,7 +12,9 @@ beamery() {
     fi
 
     # Check if the second param passed is a call to the help .. if so launch the help if not .. execute the command
-    if [[ $1 == "help" ]]; then
+    if [[ $1 == "update" ]]; then
+        git -C "${HOME}/.beamery" pull origin master
+    elif [[ $1 == "help" ]]; then
         printf "We cannot execute help without specifying the command you wish you show help for e.g., ${YELLOW}beamery audit_git_branches --help${NC}\nAlternatively, you can execute ${YELLOW}beamery --help${NC} or ${YELLOW}beamery -h${NC} for general help\n"
     elif [[ $1 == "--help" || $1 == "-h" ]]; then
         help beamery
@@ -33,6 +35,7 @@ beamery() {
                 printf "\n" && grep '#' "${config_file}" | cut -c 2- | tail -n +3
             done
             printf "\n${YELLOW}execute${NC}\nExecute a passed function on all the repos or a single repo if  provided the -s flag\n"
+            printf "\n${YELLOW}update${NC}\nUpdates the main repo to fetch any updates on the plugins or the source itself\n"
         elif [[ $1 = "execute" ]]; then
             echo "Executes a passed command in each repository"
         else
@@ -49,7 +52,7 @@ _beamery_comp()
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     chose_opt="${COMP_WORDS[1]}"
     file_type="${COMP_WORDS[2]}"
-    opts="help execute"
+    opts="help execute update"
     if [ -d "$HOME/.beamery/beamery/plugins/" ]; then
         for config_file in $HOME/.beamery/beamery/plugins/*.sh
         do
