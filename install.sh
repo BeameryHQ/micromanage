@@ -4,7 +4,7 @@ export SOURCE_LOCATION=`pwd`
 
 # Prompt user to select his type of shell
 printf "
-Please select what shell helper you need to install the plugins for (bash-it | oh-my-zsh) or other for independent installation:
+Please select what shell helper you need to install the plugins for (bash-it | oh-my-zsh | none (for standalone installation) ):
 " && read SHELL_TYPE
 
 install_manually() {
