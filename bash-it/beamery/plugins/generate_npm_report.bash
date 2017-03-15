@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Load the main plugins "interface"
 source "${HOME}/.bash_it/plugins/available/beamery/pluginsInterface.bash"
 

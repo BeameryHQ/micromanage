@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 _beamery_comp()
 {
     local cur prev opts prevprev

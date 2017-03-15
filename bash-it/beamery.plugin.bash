@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 cite about-plugin
 about-plugin 'beamery helpers functions'
 
@@ -16,7 +18,7 @@ beamery() {
 
     # Check if the second param passed is a call to the help .. if so launch the help if not .. execute the command
     if [[ $1 == "help" ]]; then
-        printf "We cannot execute help without specifying the command you wish you show help for e.g., ${YELLOW}beamery help audit_git_branches${NC}\nAlternatively, you can execute ${YELLOW}beamery --help${NC} or ${YELLOW}beamery -h${NC} for general help\n"
+        printf "We cannot execute help without specifying the command you wish you show help for e.g., ${YELLOW}beamery audit_git_branches --help${NC}\nAlternatively, you can execute ${YELLOW}beamery --help${NC} or ${YELLOW}beamery -h${NC} for general help\n"
     elif [[ $1 == "--help" || $1 == "-h" ]]; then
         help beamery
     elif [[ $2 = "--help" ]]; then

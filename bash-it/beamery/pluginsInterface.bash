@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Colors and visual Configurations
 MAGENTA='\033[35m'
 RED='\033[31m'

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 export SOURCE_LOCATION=`pwd`
 
 # Prompt user to select his type of shell
@@ -9,9 +11,9 @@ install_manually() {
 
 
 	# We need to makre sure that we have a .beamery folder in home
-	[ -d ${HOME}/.beamery ] || sudo mkdir "$HOME/.beamery"
+	[ -d ${HOME}/.beamery ] || mkdir "$HOME/.beamery"
 
-    sudo ln -sf "${SOURCE_LOCATION}/beamery" "${HOME}/.beamery"
+    ln -sf "${SOURCE_LOCATION}/beamery" "${HOME}/.beamery"
 
     # Getting the user's OS type in order to load the correct installation and configuration scripts
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -19,8 +21,13 @@ install_manually() {
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         printf "\n%s\n" "source '$HOME/.beamery/beamery/beamery.sh'" >> "${HOME}/.bash_profile"
     fi
+    # Check if we have a .zshrc regardless of the os .. and copy that to the zsh source file
+    if [[ -f "$HOME/.zshrc" ]]; then
+        printf "Noticed that you have zsh installed .. adding PATH in there .."
+        printf "\n%s\n" "source '$HOME/.beamery/beamery/beamery.sh'" >> "${HOME}/.zshrc"
+    fi
 
-    printf "Do not forget now to enable the plugin by sourcing your bash_profile or bashrc"
+    printf "Do not forget now to enable the plugin by sourcing your .bash_profile, .bashrc or .zshrc"
 }
 
 if [[ "$SHELL_TYPE" == "bash-it" ]]; then
