@@ -22,7 +22,7 @@ if [ -d "$BEAMERY" ]; then
     if [[ $OPTION =~ ^[uU]$ ]]; then
         cd "$BEAMERY" && git pull origin master && exit 0
     elif [[ $OPTION =~ ^[rR]$ ]]; then
-        sudo rm -rf "$BEAMERY"
+        rm -rf "$BEAMERY"
     else exit 0
     fi
 fi
