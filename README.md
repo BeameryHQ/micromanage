@@ -21,13 +21,13 @@ You can install this pugin via the command-line with either curl or wget:
 #### via `curl`
 
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/SeedJobs/beamery-micromanage/master/install.sh)"
+. -c "$(curl -fsSL https://raw.githubusercontent.com/SeedJobs/beamery-micromanage/master/install.sh)"
 ```
 
 #### via `wget`
 
 ```bash
-sh -c "$(wget https://raw.githubusercontent.com/SeedJobs/beamery-micromanage/master/install.sh -O -)"
+. -c "$(wget https://raw.githubusercontent.com/SeedJobs/beamery-micromanage/master/install.sh -O -)"
 ```
 
 The manual installation details for these are:

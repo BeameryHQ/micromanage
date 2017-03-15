@@ -14,6 +14,7 @@ install_manually() {
 	[ -d ${HOME}/.beamery ] || mkdir "$HOME/.beamery"
 
     ln -sf "${SOURCE_LOCATION}/beamery" "${HOME}/.beamery"
+    ln -sf "${SOURCE_LOCATION}/beamery/beamery.sh" "${HOME}/.beamery/beamery"
 
     # Getting the user's OS type in order to load the correct installation and configuration scripts
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
