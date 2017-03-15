@@ -52,7 +52,7 @@ _beamery_comp()
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     chose_opt="${COMP_WORDS[1]}"
     file_type="${COMP_WORDS[2]}"
-    opts="help execute update"
+    opts="execute update"
     if [ -d "$HOME/.beamery/beamery/plugins/" ]; then
         for config_file in $HOME/.beamery/beamery/plugins/*.sh
         do
