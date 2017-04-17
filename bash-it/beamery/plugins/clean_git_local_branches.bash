@@ -22,6 +22,14 @@ clean_git_local_branches() {
         done
     }
 
+    # Check if gawk is installed which is not by default in mac systems
+    if ! type gawk &> /dev/null ; then
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            printf "The required package ${YELLOW}gawk${NC} was not found .. installing now\n"
+            brew install gawk
+        fi
+    fi
+
     execute -g $@ "echo""; git branch --merged | egrep -v '(^\*|master|development)'| xargs -I {} delete-branch {}"
     execute -g $@ "echo""; git remote prune origin"
 
