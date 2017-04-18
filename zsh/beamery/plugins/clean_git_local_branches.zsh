@@ -21,19 +21,20 @@ clean_git_local_branches() {
     if ! type git-delete-branch &> /dev/null ; then
         if [[ "$OSTYPE" == "darwin"* ]]; then
             printf "The required package ${YELLOW}git-extras${NC} was not found .. installing now\n"
-            brew install git-extras
+            sudo brew install git-extras
         fi
-         if [[ "$OSTYPE" == "linux-gnu" ]]; then
+        if [[ "$OSTYPE" == "linux-gnu" ]]; then
             printf "The required package ${YELLOW}git-extras${NC} was not found .. installing now\n"
-            apt-get install git-extras
+            sudo apt-get install git-extras
+        fi
+    else
+        execute -g $@ "echo""; git branch --merged | egrep -v '(^\*|master|development)'| xargs -I {} git delete-branch {}"
+        execute -g $@ "echo""; git remote prune origin"
+
+        if [[ `git branch -vv | grep ': gone]'` ]]; then
+            printf "\n${YELLOW}Making sure that all 'gone' branches are also removed ..\n\n${NC}"
+            execute -g $@ "git fetch -p && for branch in `git branch -vv | grep ': gone]' | gawk '{print $1}'`; do git branch -D $branch; done"
         fi
     fi
 
-    execute -g $@ "echo""; git branch --merged | egrep -v '(^\*|master|development)'| xargs -I {} git delete-branch {}"
-    execute -g $@ "echo""; git remote prune origin"
-
-    if [[ `git branch -vv | grep ': gone]'` ]]; then
-        printf "\n${YELLOW}Making sure that all 'gone' branches are also removed ..\n\n${NC}"
-        execute -g $@ "git fetch -p && for branch in `git branch -vv | grep ': gone]' | gawk '{print $1}'`; do git branch -D $branch; done"
-    fi
 }
