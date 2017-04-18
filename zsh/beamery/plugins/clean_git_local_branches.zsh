@@ -8,19 +8,6 @@ source "${HOME}/.oh-my-zsh/plugins/beamery/pluginsInterface.zsh"
 
 clean_git_local_branches() {
 
-    delete-branch(){
-        for branch in "$@"
-        do
-          remote=$(git config branch.$branch.remote)
-          test -z $remote && remote="origin"
-          ref=$(git config branch.$branch.merge)
-          test -z $ref && ref="refs/heads/$branch"
-
-          git branch -D $branch
-          git branch -d -r $remote/$branch
-          git push $remote :$ref
-        done
-    }
 
     # Check if gawk is installed which is not by default in mac systems
     if ! type gawk &> /dev/null ; then
@@ -30,7 +17,19 @@ clean_git_local_branches() {
         fi
     fi
 
-    execute -g $@ "echo""; git branch --merged | egrep -v '(^\*|master|development)'| xargs -I {} delete-branch {}"
+    # Check if gawk is installed which is not by default in mac systems
+    if ! type git-delete-branch &> /dev/null ; then
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            printf "The required package ${YELLOW}git-extras${NC} was not found .. installing now\n"
+            brew install git-extras
+        fi
+         if [[ "$OSTYPE" == "linux-gnu" ]]; then
+            printf "The required package ${YELLOW}git-extras${NC} was not found .. installing now\n"
+            apt-get install git-extras
+        fi
+    fi
+
+    execute -g $@ "echo""; git branch --merged | egrep -v '(^\*|master|development)'| xargs -I {} git delete-branch {}"
     execute -g $@ "echo""; git remote prune origin"
 
     if [[ `git branch -vv | grep ': gone]'` ]]; then
