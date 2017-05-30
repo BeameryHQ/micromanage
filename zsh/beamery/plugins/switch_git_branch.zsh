@@ -16,7 +16,7 @@ switch_git_branch() {
 		echo "This function is not designed to work in single folder mode .. please revert to good old fashioned commands"
 	else
 	    printf "${RED}Please note that this will stash any changes made in the repos and flip the current branch${NC}\n"
-	    read -p "Are you sure you want to proceed? [Y/N] " -n 1;
+	    read -q "REPLY?Are you sure you want to proceed? [Y/N] " 1;
 	    if [[ $REPLY =~ ^[Yy]$ ]]; then
 	        if ! [[ $BRANCH =~ ^(master|development)$ ]]; then
 	            printf "\nYou are switching to a non-default branch ... fetching first\n"
