@@ -20,7 +20,7 @@ switch_git_branch_and_update() {
 	    BRANCH=${2:-master}
 
 	    printf "${RED}Please note that this will stash any changes made in the repos and flip the current branch${NC}\n"
-	    read -q "REPLY?Are you sure you want to proceed? [Y/N] " 1;
+	    read -q "REPLY?Are you sure you want to proceed? [Y/N] ";
 
 	    if [[ $REPLY =~ ^[Yy]$ ]]; then
 	        if ! [[ $BRANCH =~ ^(master|development)$ ]]; then

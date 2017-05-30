@@ -9,7 +9,7 @@ source "${HOME}/.oh-my-zsh/plugins/beamery/pluginsInterface.zsh"
 clean_git_stash() {
 
     printf "${RED}Please note that this will clear any stashes you have saved${NC}\n"
-    read -q "REPLY?Are you sure you want to proceed ? [Y/N] " 1;
+    read -q "REPLY?Are you sure you want to proceed ? [Y/N] ";
 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         execute -g $@ "git stash clear && echo '--> done'"
