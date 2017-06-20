@@ -15,7 +15,11 @@ beamery() {
     if [[ $1 == "update" ]]; then
         git -C "${HOME}/.beamery" pull origin master
     elif [[ $1 == "help" ]]; then
-        printf "We cannot execute help without specifying the command you wish you show help for e.g., ${YELLOW}beamery audit_git_branches --help${NC}\nAlternatively, you can execute ${YELLOW}beamery --help${NC} or ${YELLOW}beamery -h${NC} for general help\n"
+        if [[ -z $2 ]]; then
+        	printf "We cannot execute help without specifying the command you wish you show help for e.g., ${YELLOW}beamery audit_git_branches --help${NC} or ${YELLOW}beamery help audit_git_branches${NC} \nAlternatively, you can execute ${YELLOW}beamery --help${NC} or ${YELLOW}beamery -h${NC} for general help\n"
+        else
+    		help $2
+    	fi;
     elif [[ $1 == "--help" || $1 == "-h" ]]; then
         help beamery
     elif [[ $2 = "--help" ]]; then
