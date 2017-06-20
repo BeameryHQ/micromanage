@@ -29,12 +29,12 @@ execute() {
         if [[ $IS_NODE_FOLDER = 1 ]]; then
             if [ -f "package.json" ]; then
                 [ $IS_SHOW_FOLDER_TYPE = 1 ] && printf "\nExecuting command as folder is identified to contain valid ${YELLOW}Node.js${NC} code\n"
-                printf "Repository: ${MAGENTA}$1${NC} " && eval "${@%$1}"
+                printf "Repository: ${MAGENTA}$1${NC} "; eval "${@%$1}"
             fi
         elif [[ $IS_GIT_FOLDER = 1 ]]; then
             if [ -f ".git/config" ]; then
                 [ $IS_SHOW_FOLDER_TYPE = 1 ] && printf "\nExecuting command as folder is identified to be a valid ${YELLOW}git${NC} repository\n"
-                printf "Repository: ${MAGENTA}$1${NC} " && eval "${@%$1}"
+                printf "Repository: ${MAGENTA}$1${NC} "; eval "${@%$1}"
             fi
         else
             eval "${@%$1}"
@@ -76,7 +76,7 @@ execute() {
     [ "$1" = "--" ] && shift
 
     # Save and keep track of the parent directory to revert back to after operations are done
-    PARENT_FOLDER=`pwd`
+    export PARENT_FOLDER=`pwd`
 
     # Check if the user wishes to execute the function only at the current folder
     if [[ $IS_SINGLE_FOLDER = 1 ]]; then
