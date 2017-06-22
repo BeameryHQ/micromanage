@@ -29,12 +29,14 @@ execute() {
         if [[ $IS_NODE_FOLDER = 1 ]]; then
             if [ -f "package.json" ]; then
                 [ $IS_SHOW_FOLDER_TYPE = 1 ] && printf "\nExecuting command as folder is identified to contain valid ${YELLOW}Node.js${NC} code\n"
-                printf "${YELLOW}[Repository]${NC} ${MAGENTA}$1${NC}\n"; eval "${@%$1}"
+                [ $IS_HIDE_FOLDER_NAME = 0 ] && printf "${YELLOW}[Repository]${NC} ${MAGENTA}$1${NC}\n";
+                eval "${@%$1}"
             fi
         elif [[ $IS_GIT_FOLDER = 1 ]]; then
             if [ -f ".git/config" ]; then
                 [ $IS_SHOW_FOLDER_TYPE = 1 ] && printf "\nExecuting command as folder is identified to be a valid ${YELLOW}git${NC} repository\n"
-                printf "${YELLOW}[Repository]${NC} ${MAGENTA}$1${NC}\n"; eval "${@%$1}"
+                [ $IS_HIDE_FOLDER_NAME = 0 ] && printf "${YELLOW}[Repository]${NC} ${MAGENTA}$1${NC}\n";
+                eval "${@%$1}"
             fi
         else
             printf "${YELLOW}[Repository]${NC} ${MAGENTA}$1${NC}\n"; eval "${@%$1}"; echo ""
@@ -56,8 +58,9 @@ execute() {
     IS_HIDDEN_FOLDER=0
     IS_SINGLE_FOLDER=0
     IS_SHOW_FOLDER_TYPE=0
+    IS_HIDE_FOLDER_NAME=0
 
-    while getopts "shngp" opt; do
+    while getopts "shngpf" opt; do
         case "$opt" in
         s)  IS_SINGLE_FOLDER=1
             ;;
@@ -68,6 +71,8 @@ execute() {
         n)  IS_NODE_FOLDER=1
             ;;
         g)  IS_GIT_FOLDER=1
+            ;;
+    	f)  IS_HIDE_FOLDER_NAME=1
             ;;
         esac
     done

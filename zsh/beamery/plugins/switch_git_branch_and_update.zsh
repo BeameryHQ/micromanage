@@ -27,9 +27,9 @@ switch_git_branch_and_update() {
 	            printf "\nYou are switching to a non-default branch ... will fetch repositories first\n"
 	            # Since this function already accepts params passed
 	            # We need to check if any of the params passed is the -s which indicates this should run on a single folder
-				execute -g "echo ''; git fetch; git stash; git checkout $BRANCH; git pull $REMOTE $BRANCH; echo ''"
+				execute -g "echo ''; git fetch; git branch | grep -w $BRANCH > /dev/null && git stash && git checkout $BRANCH && git pull $REMOTE $BRANCH || echo 'This branch does not exist in this repo'; echo''"
 	        else
-	 			execute -g "echo ''; git stash; git checkout $BRANCH; git pull $REMOTE $BRANCH; echo''"
+				execute -g "echo ''; git branch | grep -w $BRANCH > /dev/null && git stash && git checkout $BRANCH && git pull $REMOTE $BRANCH || echo 'This branch does not exist in this repo'; echo''"
 	        fi
 	    fi;
 	fi;

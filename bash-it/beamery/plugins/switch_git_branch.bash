@@ -21,9 +21,9 @@ switch_git_branch() {
 	    if [[ $REPLY =~ ^[Yy]$ ]]; then
 	        if ! [[ $BRANCH =~ ^(master|development)$ ]]; then
 	            printf "\nYou are switching to a non-default branch ... fetching first\n"
-				execute -g "echo''; git fetch; git stash; git checkout $BRANCH; echo''"
+				execute -g "echo''; git fetch; git branch | grep -w $BRANCH > /dev/null && git stash && git checkout $BRANCH || echo 'This branch does not exist in this repo'; echo''"
 	        else
-	        	execute -g "echo''; git stash; git checkout $BRANCH; echo''"
+	        	execute -g "echo''; git branch | grep -w $BRANCH > /dev/null && git stash && git checkout $BRANCH || echo 'This branch does not exist in this repo'; echo''"
 	        fi
 	    fi;
 	fi;
