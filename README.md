@@ -72,7 +72,7 @@ then i add the line `source $HOME/.beamery/beamery.sh` inside my `$HOME/.bash_pr
 Currently the helper functions configured are:
 
  - **audit_git_branches**: List all the branches of a .git repository sorted by date creation
- - **check_npm_usage**: Check the places a certain npm package is used across all the repos
+ - **check_node_package_usage**: Check the places a certain npm package is used across all the repos
  - **clean_git_branches**: Total cleaning on branches by first performing deletion of remote branches that have been merged into master
  - **clean_git_local_branches**: Clean any local branches that have been deleted on remote
  - **clean_git_remote_branches**: Clean remote branches that have been merged into master and delete them from remotes as well
