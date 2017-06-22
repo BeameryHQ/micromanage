@@ -47,9 +47,12 @@ set_environment_exports() {
     # Check if we have a .zshrc regardless of the os .. and copy that to the zsh source file
     if [[ -f "$HOME/.zshrc" ]]; then
         if ! grep -q "${1}" "${HOME}/.zshrc" ; then
-          printf "Noticed that you have ${RED}Zsh${NC} installed .. adding needed variable in there ..\n"
-          echo "Editing ${YELLOW}.zshrc${NC} to load beamery-micromanage on Terminal launch"
-          printf "\n%s\n" "${1}" >> "${HOME}/.zshrc"
+          printf "Noticed that you have ${RED}Zsh${NC} installed. \n(${RED}note: there might be some compatibility issues exporting the beamery tools there as well)${NC}\n"
+          read -p "Are you sure you want to proceed exporting beamery tools in your .zshrc ? [Y/N] " -n 1;
+          if [[ $REPLY =~ ^[Yy]$ ]]; then
+          	echo "Editing ${YELLOW}.zshrc${NC} to load beamery-micromanage on Terminal launch"
+          	printf "\n%s\n" "${1}" >> "${HOME}/.zshrc"
+          fi
         fi
     fi
 }

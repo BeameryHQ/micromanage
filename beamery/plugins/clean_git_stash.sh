@@ -12,7 +12,7 @@ clean_git_stash() {
     read -p "Are you sure you want to proceed ? [Y/N] " -n 1;
 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        execute -g $@ "git stash clear && echo '--> done'"
+        execute -g $@ "echo ''; git stash clear && echo '--> done'"
     fi
     echo "";
 }

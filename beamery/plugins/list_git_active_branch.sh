@@ -8,5 +8,5 @@ source "${HOME}/.beamery/beamery/pluginsInterface.sh"
 # This is useful to know which branches are flipped on which repos
 
 list_git_active_branch() {
-    execute -g $@ printf "'${YELLOW}'  &&  git branch | grep '^\*' | cut -d' ' -f2 && printf '${NC}'"
+    execute -g $@ printf "'\e[1A\e[70CBranch: ${YELLOW}'  &&  git branch | grep '^\*' | cut -d' ' -f2 && printf '${NC}'"
 }

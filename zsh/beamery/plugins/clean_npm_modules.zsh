@@ -3,7 +3,6 @@
 # Load the main plugins "interface"
 source "${HOME}/.oh-my-zsh/plugins/beamery/pluginsInterface.zsh"
 
-# clean_npm_modules
 # Clean unused NPM modules from each repo
 # The function will check if npm-clean is installed and install it otherwise
 

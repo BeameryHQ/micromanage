@@ -3,7 +3,6 @@
 # Load the main plugins "interface"
 source "${HOME}/.oh-my-zsh/plugins/beamery/pluginsInterface.zsh"
 
-# clean_git_stash
 # Clean any stashed commits
 
 clean_git_stash() {
@@ -12,7 +11,7 @@ clean_git_stash() {
     read -q "REPLY?Are you sure you want to proceed ? [Y/N] ";
 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        execute -g $@ "git stash clear && echo '--> done'"
+        execute -g $@ "echo ''; git stash clear && echo '--> done'"
     fi
     echo "";
 }

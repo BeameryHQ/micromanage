@@ -15,6 +15,6 @@ update_git_branch() {
 	if [[ $@ == *'-s'* ]]; then
 		echo "This function is not designed to work in single folder mode .. please revert to good old fashioned commands"
 	else
-		execute -g "git pull ${2:-origin} ${1:-master}"
+		execute -g "echo''; git pull ${2:-origin} ${1:-master}; echo''"
 	fi;
 }

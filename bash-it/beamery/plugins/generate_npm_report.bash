@@ -10,15 +10,27 @@ source "${HOME}/.bash_it/plugins/available/beamery/pluginsInterface.bash"
 
 generate_npm_report() {
 
+	check_npm_report() {
+    	if [[ -f "npm-report.txt" ]]; then
+    		read -p "We have detected that an npm-report already exists. Would you like to clear that out before ? [Y/N] " -n 1;
+			if [[ $REPLY =~ ^[Yy]$ ]]; then
+				rm -rf "npm-report.txt"
+				echo ""
+			fi;
+    	fi;
+	}
+
 	if [[ $@ == *'-s'* ]]; then
 		echo "This function is not designed to work in single folder mode .. please revert to good old fashioned commands"
 	else
 	    if command_exists npm-check ; then
-	        execute -n "npm-check >> ../npm-report.txt"
+			check_npm_report
+	        execute -n 'echo "Checking NPM modules in package.json"; echo [REPOSITORY] `basename $PWD` >> ../npm-report.txt;  npm-check >> ../npm-report.txt'
 	    else
 	        printf 'npm-check module was not found. Installing now:';
 	        npm install -g npm-check
-	        execute -n "npm-check >> ../npm-report.txt"
+	        check_npm_report
+	        execute -n 'echo "Checking NPM modules in package.json"; echo [REPOSITORY] `basename $PWD` >> ../npm-report.txt;  npm-check >> ../npm-report.txt'
 	    fi
 	fi;
 }

@@ -21,11 +21,10 @@ switch_git_branch() {
 	    if [[ $REPLY =~ ^[Yy]$ ]]; then
 	        if ! [[ $BRANCH =~ ^(master|development)$ ]]; then
 	            printf "\nYou are switching to a non-default branch ... fetching first\n"
-				execute -g "git fetch; git stash; git checkout $BRANCH"
+				execute -g "echo''; git fetch; git stash; git checkout $BRANCH; echo''"
 	        else
-	        	execute -g "git stash; git checkout $BRANCH"
+	        	execute -g "echo''; git stash; git checkout $BRANCH; echo''"
 	        fi
 	    fi;
-	    echo "";
 	fi;
 }
